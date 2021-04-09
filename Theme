@@ -1,0 +1,1725 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+	<title>PLANTAMOR</title>
+	<meta name="description" content="Plantamor adalah tempat berbagi informasi yang berkaitan dengan pengenalan berbagai jenis tumbuhan." />
+	<meta name="keywords" content="" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="http://plantamor.com/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Bootstrap Toggle 2.2.0 --> 
+    <link href="http://plantamor.com/assets/bootstrap/css/bootstrap-toggle.min.css" rel="stylesheet" type="text/css" />    
+    <!-- FontAwesome 4.6.1 --> 
+    <link href="http://plantamor.com/assets/bootstrap/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="http://plantamor.com/assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="http://plantamor.com/assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+	<!-- jvectormap -->
+    <link href="http://plantamor.com/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="http://plantamor.com/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://plantamor.com/assets/plantamor/plantamor.css" rel="stylesheet" type="text/css">
+	<!--[if gte IE 9 ]><link rel="stylesheet" type="text/css" href="xstyles.css" media="screen"><![endif]-->
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script> 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+     <style>
+       #map {
+        height: 560px;
+        width: 100%;
+       }
+	</style> 
+
+</head><body class="skin-blue"> 
+      <header class="main-header">
+			<div class="row top-ribbon">
+				<div class="col-md-3">
+					<div class="top-logo"><a class="top-menu-item" href="http://plantamor.com/">PLANTAMOR</a></div>
+				</div>
+				<div class="col-md-9">
+					<div class="top-menu">
+						<a class="top-menu-item" href="http://plantamor.com/species/direktori">DIREKTORI</a>
+						<a class="top-menu-item" href="http://plantamor.com/species/gallery">GALERI</a>
+						<a class="top-menu-item" href="http://plantamor.com/virtual/visit">VIRTUAL</a>
+												<a class="top-menu-item" href="#" data-toggle="modal" data-target="#login">[LOGIN]</a>
+											</div>
+				</div>
+			</div>
+
+								
+				<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="evaModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document" >
+						<div class="modal-content log-modal">	
+							<div class="modal-header"  style="border-top-left-radius:5px;border-top-right-radius:5px;">
+							<h3 class="modal-title" id="evaModalLabel"><i class="fa fa-sign-in fa-lg"></i> PLANTAMOR LOGIN</h3>
+							<div  style="position:relative;display:inline-block;float:right;margin-top:-40px;margin-right:-10px;">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fa fa-times-circle fa-lg"></i></span>
+							</button>
+							</div>
+							</div>
+							    																<form action="http://plantamor.com/authentication" role="form" method="post" accept-charset="utf-8">
+								
+									<div class="row" style="margin:10px;padding:10px;">
+									<div class="col-md-3" style="font-size:16px;">Username:</div>
+									<div class="col-md-9" style="font-size:16px;"><input type="text" class="form-control" placeholder="Username" name="username" autofocus/></div>
+									</div>
+									<div class="row" style="margin:10px;padding:10px;">
+									<div class="col-md-3" style="font-size:16px;">Password:</div>
+									<div class="col-md-9" style="font-size:16px;"><input type="password" class="form-control" placeholder="Kata sandi" name="password"/></div>
+									</div>
+									<div class="row" style="margin:10px;padding:10px;">
+										<div class="col-md-6" style="font-size:16px;">
+											<button type="submit" name="cancel" class="btn btn-default btn-block btn-flat" value="cancel">Cancel</button>
+										</div>
+										<div class="col-md-6" style="font-size:16px;">
+																						<input name="redirect" type="hidden" value="http://plantamor.com/">
+											<button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+										</div>
+									</div>
+								</form>							</div>	
+						</div>						
+					</div>
+						</header>				
+				      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div style="width:100%;clear:both"></div>
+		
+		<section class="content-header">
+				<div class="md-only" style="position:absolute"></div>
+		  <form action="http://plantamor.com/species/search" role="form" method="post" accept-charset="utf-8">
+            <div class="row" style="max-width:600px;font-size:18px;margin:auto">
+				<div class="col-md-10 col-xs-10">
+			
+				<input type="text" name="skw" value="" class="search-box" placeholder="plant name search"></div><div class="col-md-2 col-xs-2"><button type="submit" style="height:40px;width:40px;border-radius:5px 15px;"><i class="fa fa-search" style="color:orange"></i></button></div>
+			</div>
+										
+
+
+		</form>		</section>
+        <section class="content">
+           <div class="row"><!-- /.main row -->
+<section class="col-md-8 connectedSortable">
+   <div class="box box-info">
+       	<div class="box-body no-padding">
+		<div class="workspace-container">	<!-- wrapper starts -->
+			<div class="workspace" style="min-height:900px;overflow:hidden"><!-- workspace starts -->  <div class="row" style="font-size:20px; padding:18px">
+
+</div>
+    <style>
+		div.gallery {margin: 5px;border: 1px solid #ccc;float: left;width: 160px;height: 160px;text-align: center; font-size:14px; padding: 3px;border-radius:6px;background-size: cover;}
+		div.gallery:hover {border:4px; color:#FF5722; font-weight:bold; box-shadow: 0 0 8px rgba(33,33,33,.5);}
+
+		div.virtual {margin: 5px;border: 1px solid #ccc;float: left;width: 160px;height: 160px;text-align: center; font-size:14px; padding: 0;border-radius:6px; background-size: cover;overflow:hidden;}
+		div.virtual:hover {border:4px; color:#FF5722; font-size:40px; box-shadow: 0 0 8px rgba(33,33,33,.5);}
+		
+		div.transtit{padding:2px;text-align:center;height:40px;width:100%; font-size:14px; border-radius:6px 6px 0 0; overflow:hidden; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.3);color: #f1f1f1;}
+		
+		div.transmed{height:70px;width:100%;padding-top:30px;text-align:center;}
+		
+		div.transloc{padding:2px;text-align:center;height:50px;width:100%; font-size:14px; border-radius:0 0 6px 6px; overflow:hidden; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.3);color: #f1f1f1;}
+
+		.clear{padding:2px;text-align:center;height:40px;width:100%; font-size:14px; color:#225023; overflow:hidden;}		
+	</style>
+
+
+<div style="width:100%;margin:auto;font-size:17px">	
+
+<div class="row panel panel-default" style="margin:6px;padding:6px"> 
+		<div class="container" style="width:100%;padding:6px">
+			<div class="panel-group" id="direktori"> 
+				<div class="panel-heading" >
+					<span style="font-weight:600;font-size:20px;color:#1fa67a">
+					<i class="fa fa-list"></i>&nbsp;DIREKTORI NAMA TUMBUHAN
+					</span>
+				</div>
+
+		
+		<div class="col-md-9" style="display:block;margin-bottom:4px">
+			<div class="panel panel-default" style="font-size:16px;">
+				<div class="panel-heading" >
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#direktori" href="#selFam">Penelusuran</a></h4>
+				</div>
+				<div id="selFam" class="panel-collapse collapse">
+					<div class="panel-body" style="width:100%">
+					
+			
+		<div class="row pl-select-container">
+		<form action="http://plantamor.com/species/under" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+
+			<div class="col-md-3" style="font-size:14px;">
+				<select id = "filter_f" name="filter_f"  class="pl-select">
+					<option value="0">Semua famili</option>
+											<option value="1">Acanthaceae</option>
+												<option value="2">Acarosporaceae</option>
+												<option value="3">Aceraceae</option>
+												<option value="4">Achariaceae</option>
+												<option value="5">Achatocarpaceae</option>
+												<option value="6">Acoraceae</option>
+												<option value="7">Acrobolbaceae</option>
+												<option value="8">Acrostichaceae</option>
+												<option value="9">Actinidiaceae</option>
+												<option value="10">Actiniopteridaceae</option>
+												<option value="11">Adelococcaceae</option>
+												<option value="12">Adiantaceae</option>
+												<option value="13">Adoxaceae</option>
+												<option value="692">Agaricaceae</option>
+												<option value="14">Agavaceae</option>
+												<option value="15">Agyriaceae</option>
+												<option value="16">Aizoaceae</option>
+												<option value="17">Alangiaceae</option>
+												<option value="18">Alectoriaceae</option>
+												<option value="19">Alismataceae</option>
+												<option value="20">Allisoniaceae</option>
+												<option value="21">Aloaceae</option>
+												<option value="22">Aloeaceae</option>
+												<option value="23">Alsophilaceae</option>
+												<option value="24">Altingiaceae</option>
+												<option value="25">Amaranthaceae</option>
+												<option value="26">Amaryllidaceae</option>
+												<option value="27">Amblystegiaceae</option>
+												<option value="28">Anacardiaceae</option>
+												<option value="29">Ancistrocladaceae</option>
+												<option value="30">Andreaeaceae</option>
+												<option value="31">Andreaeobryaceae</option>
+												<option value="32">Anemiaceae</option>
+												<option value="33">Aneuraceae</option>
+												<option value="34">Anisophyllaceae</option>
+												<option value="35">Annonaceae</option>
+												<option value="36">Anomodontaceae</option>
+												<option value="37">Anopteraceae</option>
+												<option value="38">Antheliaceae</option>
+												<option value="39">Anthericaceae</option>
+												<option value="40">Anthocerotaceae</option>
+												<option value="41">Apiaceae</option>
+												<option value="42">Apocynaceae</option>
+												<option value="43">Aponogetonaceae</option>
+												<option value="44">Aquifoliaceae</option>
+												<option value="45">Araceae</option>
+												<option value="46">Araliaceae</option>
+												<option value="47">Araucariaceae</option>
+												<option value="48">Archidiaceae</option>
+												<option value="49">Arctomiaceae</option>
+												<option value="50">Arecaceae</option>
+												<option value="51">Areschougiaceae</option>
+												<option value="52">Aristolochiaceae</option>
+												<option value="53">Arnelliaceae</option>
+												<option value="54">Arthoniaceae</option>
+												<option value="55">Arthopyreniaceae</option>
+												<option value="56">Arthrorhaphidaceae</option>
+												<option value="57">Asclepiadaceae</option>
+												<option value="58">Asparagaceae</option>
+												<option value="59">Asphodelaceae</option>
+												<option value="60">Aspidiaceae</option>
+												<option value="61">Aspleniaceae</option>
+												<option value="62">Asteraceae</option>
+												<option value="63">Asterothyriaceae</option>
+												<option value="64">Atheliaceae</option>
+												<option value="65">Athyriaceae</option>
+												<option value="66">Aulacomniaceae</option>
+												<option value="67">Auriculariaceae</option>
+												<option value="68">Austrobaileyaceae</option>
+												<option value="69">Aytoniaceae</option>
+												<option value="70">Azollaceae</option>
+												<option value="71">Bacidiaceae</option>
+												<option value="72">Baeomycetaceae</option>
+												<option value="73">Balanitaceae</option>
+												<option value="74">Balanopaceae</option>
+												<option value="75">Balanophoraceae</option>
+												<option value="76">Balsaminaceae</option>
+												<option value="77">Bartramiaceae</option>
+												<option value="78">Basellaceae</option>
+												<option value="79">Bataceae</option>
+												<option value="80">Batidaceae</option>
+												<option value="81">Begoniaceae</option>
+												<option value="82">Berberidaceae</option>
+												<option value="83">Betulaceae</option>
+												<option value="84">Biatorellaceae</option>
+												<option value="85">Bignoniaceae</option>
+												<option value="86">Bixaceae</option>
+												<option value="87">Blasiaceae</option>
+												<option value="88">Blechnaceae</option>
+												<option value="89">Bolbitidaceae</option>
+												<option value="90">Bombacaceae</option>
+												<option value="91">Bombaceae</option>
+												<option value="92">Boraginaceae</option>
+												<option value="93">Botrychiaceae</option>
+												<option value="94">Brachytheciaceae</option>
+												<option value="95">Brassicaceae</option>
+												<option value="96">Brigantiaceae</option>
+												<option value="97">Bromeliaceae</option>
+												<option value="98">Bruchiaceae</option>
+												<option value="99">Brunelliaceae</option>
+												<option value="100">Bruniaceae</option>
+												<option value="101">Bryaceae</option>
+												<option value="102">Bryoxiphiaceae</option>
+												<option value="103">Buddlejaceae</option>
+												<option value="104">Burmanniaceae</option>
+												<option value="105">Burseraceae</option>
+												<option value="106">Butomaceae</option>
+												<option value="107">Buxaceae</option>
+												<option value="108">Buxbaumiaceae</option>
+												<option value="109">Cabombaceae</option>
+												<option value="110">Cactaceae</option>
+												<option value="111">Caesalpiniaceae</option>
+												<option value="112">Caliciaceae</option>
+												<option value="113">Callicostaceae</option>
+												<option value="114">Callitrichaceae</option>
+												<option value="115">Calycanthaceae</option>
+												<option value="116">Calyceraceae</option>
+												<option value="117">Calymperaceae</option>
+												<option value="118">Calypogeiaceae</option>
+												<option value="119">Campanulaceae</option>
+												<option value="120">Candelariaceae</option>
+												<option value="121">Canellaceae</option>
+												<option value="122">Cannabaceae</option>
+												<option value="123">Cannaceae</option>
+												<option value="124">Cannellaceae</option>
+												<option value="125">Capnodiaceae</option>
+												<option value="693">Capnodiaceae</option>
+												<option value="126">Capparaceae</option>
+												<option value="127">Capparidaceae</option>
+												<option value="128">Caprifoliaceae</option>
+												<option value="129">Caricaceae</option>
+												<option value="130">Caryocaraceae</option>
+												<option value="131">Caryophyllaceae</option>
+												<option value="132">Casuarinaceae</option>
+												<option value="133">Catillariaceae</option>
+												<option value="134">Catoscopiaceae</option>
+												<option value="135">Caulerpaceae</option>
+												<option value="136">Cecropiaceae</option>
+												<option value="137">Celastraceae</option>
+												<option value="138">Centrolepidaceae</option>
+												<option value="139">Cephalotaceae</option>
+												<option value="140">Cephalotaxaceae</option>
+												<option value="141">Cephaloziaceae</option>
+												<option value="142">Cephaloziellaceae</option>
+												<option value="143">Ceratophyllaceae</option>
+												<option value="144">Ceratopteridaceae</option>
+												<option value="145">Cercidiphyllaceae</option>
+												<option value="146">Cheilanthaceae</option>
+												<option value="147">Cheiropleuriaceae</option>
+												<option value="148">Chenopodiaceae</option>
+												<option value="149">Chionosphaeraceae</option>
+												<option value="150">Chloranthaceae</option>
+												<option value="151">Chonecoleaceae</option>
+												<option value="152">Chrysobalanaceae</option>
+												<option value="153">Chrysotrichaceae</option>
+												<option value="154">Cibotiaceae</option>
+												<option value="155">Cistaceae</option>
+												<option value="156">Cladoniaceae</option>
+												<option value="699">Cladosporiaceae</option>
+												<option value="157">Clavariaceae</option>
+												<option value="158">Cleomaceae</option>
+												<option value="159">Clethraceae</option>
+												<option value="160">Cleveaceae</option>
+												<option value="161">Climaciaceae</option>
+												<option value="162">Clusiaceae</option>
+												<option value="163">Cneoraceae</option>
+												<option value="164">Coccocarpiaceae</option>
+												<option value="165">Coccotremataceae</option>
+												<option value="166">Cochlospermaceae</option>
+												<option value="167">Colchiaceae</option>
+												<option value="168">Collemataceae</option>
+												<option value="169">Combretaceae</option>
+												<option value="170">Commelinaceae</option>
+												<option value="700">Comminutisporaceae</option>
+												<option value="171">Coniocybaceae</option>
+												<option value="172">Connaraceae</option>
+												<option value="173">Conocephalaceae</option>
+												<option value="174">Convolvulaceae</option>
+												<option value="175">Coriariaceae</option>
+												<option value="176">Cornaceae</option>
+												<option value="177">Corsiniaceae</option>
+												<option value="178">Corticiaceae</option>
+												<option value="179">Corynocarpaceae</option>
+												<option value="180">Costaceae</option>
+												<option value="181">Crassulaceae</option>
+												<option value="182">Crocyniaceae</option>
+												<option value="183">Crossosomataceae</option>
+												<option value="184">Cryphaeaceae</option>
+												<option value="185">Crypteroniaceae</option>
+												<option value="186">Cryptogrammaceae</option>
+												<option value="187">Cucurbitaceae</option>
+												<option value="188">Culcitaceae</option>
+												<option value="189">Cunoniaceae</option>
+												<option value="190">Cupressaceae</option>
+												<option value="191">Cuscutaceae</option>
+												<option value="192">Cyatheaceae</option>
+												<option value="193">Cycadaceae</option>
+												<option value="194">Cyclanthaceae</option>
+												<option value="195">Cymodoceaceae</option>
+												<option value="196">Cynomoriaceae</option>
+												<option value="197">Cyperaceae</option>
+												<option value="198">Cyrillaceae</option>
+												<option value="705">Cystocoleaceae</option>
+												<option value="199">Cystodiaceae</option>
+												<option value="200">Cystopteridaceae</option>
+												<option value="201">Dacampiaceae</option>
+												<option value="202">Dactylosporaceae</option>
+												<option value="203">Daltoniaceae</option>
+												<option value="204">Daphniphyllaceae</option>
+												<option value="205">Datiscaceae</option>
+												<option value="206">Davalliaceae</option>
+												<option value="207">Degeneriaceae</option>
+												<option value="208">Dendrocerotaceae</option>
+												<option value="209">Dennstaedtiaceae</option>
+												<option value="210">Diapensiaceae</option>
+												<option value="211">Dichapetalaceae</option>
+												<option value="212">Dicksoniaceae</option>
+												<option value="213">Dicranaceae</option>
+												<option value="214">Dicranopteridaceae</option>
+												<option value="215">Didiereaceae</option>
+												<option value="216">Dilleniaceae</option>
+												<option value="217">Dioscoreaceae</option>
+												<option value="218">Dipsacaceae</option>
+												<option value="219">Dipteridaceae</option>
+												<option value="220">Dipterocarpaceae</option>
+												<option value="221">Disceliaceae</option>
+												<option value="706">Dissoconiaceae</option>
+												<option value="222">Ditrichaceae</option>
+												<option value="701">Dothideaceae</option>
+												<option value="702">Dothioraceae</option>
+												<option value="223">Dracaenaceae</option>
+												<option value="224">Droseraceae</option>
+												<option value="225">Drynariaceae</option>
+												<option value="226">Dryopteridaceae</option>
+												<option value="227">Ebenaceae</option>
+												<option value="228">Ectolechiaceae</option>
+												<option value="229">Eigleraceae</option>
+												<option value="230">Elaeagnaceae</option>
+												<option value="231">Elaeocarpaceae</option>
+												<option value="232">Elaphoglossaceae</option>
+												<option value="233">Elatinaceae</option>
+												<option value="713">Elsinoaceae</option>
+												<option value="234">Empetraceae</option>
+												<option value="235">Encalyptaceae</option>
+												<option value="236">Entodontaceae</option>
+												<option value="237">Epacridaceae</option>
+												<option value="238">Ephedraceae</option>
+												<option value="239">Ephemeraceae</option>
+												<option value="240">Equisetaceae</option>
+												<option value="241">Eremolepidaceae</option>
+												<option value="242">Ericaceae</option>
+												<option value="243">Eriocaulaceae</option>
+												<option value="244">Erpodiaceae</option>
+												<option value="245">Erythroxylaceae</option>
+												<option value="694">Euantennariaceae</option>
+												<option value="246">Eucommiaceae</option>
+												<option value="247">Eucryphiaceae</option>
+												<option value="248">Euphorbiaceae</option>
+												<option value="249">Eupomatiaceae</option>
+												<option value="707">Extremaceae</option>
+												<option value="250">Fabaceae</option>
+												<option value="252">Fabroniaceae</option>
+												<option value="253">Fagaceae</option>
+												<option value="254">Fissidentaceae</option>
+												<option value="255">Flacourtiaceae</option>
+												<option value="256">Flagellariaceae</option>
+												<option value="257">Fontinalaceae</option>
+												<option value="258">Fossombroniaceae</option>
+												<option value="259">Fouquieriaceae</option>
+												<option value="260">Frankeniaceae</option>
+												<option value="261">Fumariaceae</option>
+												<option value="262">Funariaceae</option>
+												<option value="263">Fuscideaceae</option>
+												<option value="264">Garryaceae</option>
+												<option value="265">Geissolomataceae</option>
+												<option value="266">Gelidiellaceae</option>
+												<option value="267">Gentianaceae</option>
+												<option value="268">Geocalycaceae</option>
+												<option value="269">Geraniaceae</option>
+												<option value="270">Gesneriaceae</option>
+												<option value="271">Gigaspermaceae</option>
+												<option value="272">Ginkgoaceae</option>
+												<option value="273">Gleicheniaceae</option>
+												<option value="274">Gnetaceae</option>
+												<option value="275">Gomortegaceae</option>
+												<option value="276">Gomphillaceae</option>
+												<option value="277">Goodeniaceae</option>
+												<option value="278">Gracilariaceae</option>
+												<option value="279">Grammitidaceae</option>
+												<option value="280">Graphidaceae</option>
+												<option value="281">Greyiaceae</option>
+												<option value="282">Grimmiaceae</option>
+												<option value="283">Grossulariaceae</option>
+												<option value="284">Grubbiaceae</option>
+												<option value="285">Gunneraceae</option>
+												<option value="286">Guttiferae</option>
+												<option value="287">Gyalectaceae</option>
+												<option value="288">Gymnogrammitidaceae</option>
+												<option value="289">Gymnomitriaceae</option>
+												<option value="290">Gypsoplaceae</option>
+												<option value="291">Gyrothyraceae</option>
+												<option value="292">Haematommataceae</option>
+												<option value="293">Haemodoraceae</option>
+												<option value="294">Haloragaceae</option>
+												<option value="295">Hamamelidaceae</option>
+												<option value="296">Hanguanaceae</option>
+												<option value="297">Haplomitriaceae</option>
+												<option value="298">Hedwigiaceae</option>
+												<option value="299">Heliconiaceae</option>
+												<option value="300">Helminthostachyaceae</option>
+												<option value="301">Helodiaceae</option>
+												<option value="302">Hemionitidaceae</option>
+												<option value="303">Heppiaceae</option>
+												<option value="304">Herbertaceae</option>
+												<option value="305">Hernandiaceae</option>
+												<option value="306">Himantandraceae</option>
+												<option value="307">Hippocastanaceae</option>
+												<option value="308">Hippocrateaceae</option>
+												<option value="309">Hippuridaceae</option>
+												<option value="310">Hookeriaceae</option>
+												<option value="311">Houmiriaceae</option>
+												<option value="312">Hyacinthaceae</option>
+												<option value="313">Hydnoraceae</option>
+												<option value="314">Hydrangeaceae</option>
+												<option value="315">Hydrocharitaceae</option>
+												<option value="316">Hydrophyllaceae</option>
+												<option value="317">Hylocomiaceae</option>
+												<option value="318">Hymeneliaceae</option>
+												<option value="319">Hymenophyllaceae</option>
+												<option value="320">Hymenophyllopsidaceae</option>
+												<option value="321">Hypericaceae</option>
+												<option value="322">Hypnaceae</option>
+												<option value="323">Hypocreaceae</option>
+												<option value="324">Hypodematiaceae</option>
+												<option value="325">Hypolepidaceae</option>
+												<option value="326">Hypopterygiaceae</option>
+												<option value="327">Icacinaceae</option>
+												<option value="328">Illiciaceae</option>
+												<option value="329">Iridaceae</option>
+												<option value="330">Isoetaceae</option>
+												<option value="331">Joinvilleaceae</option>
+												<option value="332">Jubulaceae</option>
+												<option value="333">Juglandaceae</option>
+												<option value="334">Julianiaceae</option>
+												<option value="335">Juncaceae</option>
+												<option value="336">Juncaginaceae</option>
+												<option value="337">Jungermanniaceae</option>
+												<option value="338">Krameriaceae</option>
+												<option value="339">Lacistemataceae</option>
+												<option value="340">Lactoridaceae</option>
+												<option value="341">Lamiaceae</option>
+												<option value="342">Lardizabalaceae</option>
+												<option value="343">Lauraceae</option>
+												<option value="344">Lecanoraceae</option>
+												<option value="345">Lecideaceae</option>
+												<option value="346">Lecythidaceae</option>
+												<option value="347">Leeaceae</option>
+												<option value="348">Leitneriaceae</option>
+												<option value="349">Lejeuneaceae</option>
+												<option value="350">Lemnaceae</option>
+												<option value="351">Lennoaceae</option>
+												<option value="352">Lentibulariaceae</option>
+												<option value="353">Leotiaceae</option>
+												<option value="354">Lepidoziaceae</option>
+												<option value="355">Leptodontaceae</option>
+												<option value="356">Leskeaceae</option>
+												<option value="357">Letrouitiaceae</option>
+												<option value="358">Leucobryaceae</option>
+												<option value="359">Leucodontaceae</option>
+												<option value="360">Lichenotheliaceae</option>
+												<option value="361">Lichinaceae</option>
+												<option value="362">Lilaeaceae</option>
+												<option value="363">Liliaceae</option>
+												<option value="364">Limnanthaceae</option>
+												<option value="365">Limnocharitaceae</option>
+												<option value="366">Linaceae</option>
+												<option value="367">Lindsaeaceae</option>
+												<option value="368">Loasaceae</option>
+												<option value="369">Lobariaceae</option>
+												<option value="370">Loganiaceae</option>
+												<option value="371">Lomariopsidaceae</option>
+												<option value="372">Lonchitidaceae</option>
+												<option value="373">Lophocoleaceae</option>
+												<option value="374">Lophopyxidaceae</option>
+												<option value="375">Lophosoriaceae</option>
+												<option value="376">Loranthaceae</option>
+												<option value="377">Loxogrammaceae</option>
+												<option value="378">Loxomataceae</option>
+												<option value="379">Lunulariaceae</option>
+												<option value="380">Lycopodiaceae</option>
+												<option value="381">Lygodiaceae</option>
+												<option value="382">Lythraceae</option>
+												<option value="383">Magnoliaceae</option>
+												<option value="384">Malesherbiaceae</option>
+												<option value="385">Malpighiaceae</option>
+												<option value="386">Malvaceae</option>
+												<option value="387">Marantaceae</option>
+												<option value="388">Marasmiaceae</option>
+												<option value="389">Marattiaceae</option>
+												<option value="390">Marcgraviaceae</option>
+												<option value="391">Marchantiaceae</option>
+												<option value="392">Marsileaceae</option>
+												<option value="393">Mastigophoraceae</option>
+												<option value="394">Mastodiaceae</option>
+												<option value="395">Matoniaceae</option>
+												<option value="396">Mayacaceae</option>
+												<option value="397">Medusandraceae</option>
+												<option value="398">Meesiaceae</option>
+												<option value="399">Megalosporaceae</option>
+												<option value="400">Melanommataceae</option>
+												<option value="401">Melaspileaceae</option>
+												<option value="402">Melastomataceae</option>
+												<option value="403">Meliaceae</option>
+												<option value="404">Melianthaceae</option>
+												<option value="405">Menispermaceae</option>
+												<option value="406">Menyanthaceae</option>
+												<option value="407">Mesoptychiaceae</option>
+												<option value="695">Metacapnodiaceae</option>
+												<option value="408">Metaxyaceae</option>
+												<option value="409">Meteoriaceae</option>
+												<option value="410">Metzgeriaceae</option>
+												<option value="411">Micareaceae</option>
+												<option value="412">Microcaliciaceae</option>
+												<option value="413">Mimosaceae</option>
+												<option value="414">Misodendraceae</option>
+												<option value="415">Mniaceae</option>
+												<option value="416">Mohriaceae</option>
+												<option value="417">Molluginaceae</option>
+												<option value="418">Monachosoraceae</option>
+												<option value="419">Monimiaceae</option>
+												<option value="420">Monoblastiaceae</option>
+												<option value="421">Monosoleniaceae</option>
+												<option value="422">Monotropaceae</option>
+												<option value="423">Moraceae</option>
+												<option value="424">Moringaceae</option>
+												<option value="425">Mucoraceae</option>
+												<option value="426">Musaceae</option>
+												<option value="427">Mycoblastaceae</option>
+												<option value="428">Mycocaliciaceae</option>
+												<option value="429">Mycoporaceae</option>
+												<option value="430">Mycosphaerellaceae</option>
+												<option value="708">Mycosphaerellaceae</option>
+												<option value="431">Myoporaceae</option>
+												<option value="714">Myriangiaceae</option>
+												<option value="432">Myricaceae</option>
+												<option value="433">Myriniaceae</option>
+												<option value="434">Myristicaceae</option>
+												<option value="435">Myrsinaceae</option>
+												<option value="436">Myrtaceae</option>
+												<option value="437">Myxotrichaceae</option>
+												<option value="438">Najadaceae</option>
+												<option value="439">Neckeraceae</option>
+												<option value="440">Negripteridaceae</option>
+												<option value="441">Nelumbonaceae</option>
+												<option value="696">Neoantennariellaceae</option>
+												<option value="709">Neodevriesiaceae</option>
+												<option value="715">Neophaeothecaceae</option>
+												<option value="442">Nepenthaceae</option>
+												<option value="443">Nephrolepidaceae</option>
+												<option value="444">Nephromataceae</option>
+												<option value="445">Notothyladaceae</option>
+												<option value="446">Nyctaginaceae</option>
+												<option value="447">Nymphaeaceae</option>
+												<option value="448">Nyssaceae</option>
+												<option value="449">Ochnaceae</option>
+												<option value="450">Odontotremataceae</option>
+												<option value="451">Oedipodiaceae</option>
+												<option value="452">Olacaceae</option>
+												<option value="453">Oleaceae</option>
+												<option value="454">Oleandraceae</option>
+												<option value="455">Oliniaceae</option>
+												<option value="456">Onagraceae</option>
+												<option value="457">Onocleaceae</option>
+												<option value="458">Opegraphaceae</option>
+												<option value="459">Ophioglossaceae</option>
+												<option value="460">Ophioparmaceae</option>
+												<option value="461">Opiliaceae</option>
+												<option value="462">Orchidaceae</option>
+												<option value="463">Orobanchaceae</option>
+												<option value="464">Orthotrichaceae</option>
+												<option value="465">Osmundaceae</option>
+												<option value="466">Oxalidaceae</option>
+												<option value="467">Oxymitraceae</option>
+												<option value="468">Paeoniaceae</option>
+												<option value="469">Pallaviciniaceae</option>
+												<option value="470">Pandaceae</option>
+												<option value="471">Pandanaceae</option>
+												<option value="472">Pannariaceae</option>
+												<option value="473">Papaveraceae</option>
+												<option value="474">Papilionaceae</option>
+												<option value="251">Papilionaceae</option>
+												<option value="475">Parkeriaceae</option>
+												<option value="476">Parmeliaceae</option>
+												<option value="477">Passifloraceae</option>
+												<option value="478">Pedaliaceae</option>
+												<option value="479">Pelliaceae</option>
+												<option value="480">Peltigeraceae</option>
+												<option value="481">Peltulaceae</option>
+												<option value="482">Penaeaceae</option>
+												<option value="719">Pentaphylacaceae</option>
+												<option value="483">Peperomiaceae</option>
+												<option value="484">Peranemataceae</option>
+												<option value="485">Pertusariaceae</option>
+												<option value="716">Phaeothecaceae</option>
+												<option value="710">Phaeothecoidiellaceae</option>
+												<option value="486">Philydraceae</option>
+												<option value="487">Phlyctidaceae</option>
+												<option value="488">Phyllachoraceae</option>
+												<option value="489">Physciaceae</option>
+												<option value="490">Phytolaccaceae</option>
+												<option value="697">Piedraiaceae</option>
+												<option value="491">Pilocarpaceae</option>
+												<option value="492">Pilulariaceae</option>
+												<option value="493">Pinaceae</option>
+												<option value="494">Piperaceae</option>
+												<option value="495">Pittosporaceae</option>
+												<option value="496">Placynthiaceae</option>
+												<option value="497">Plagiochilaceae</option>
+												<option value="498">Plagiogyriaceae</option>
+												<option value="499">Plagiotheciaceae</option>
+												<option value="500">Plantaginaceae</option>
+												<option value="501">Platanaceae</option>
+												<option value="502">Platyceriaceae</option>
+												<option value="503">Platygloeaceae</option>
+												<option value="504">Platyzomataceae</option>
+												<option value="505">Pleomassariaceae</option>
+												<option value="506">Pleosporaceae</option>
+												<option value="507">Pleurisoriopsidaceae</option>
+												<option value="691">Pleurotaceae</option>
+												<option value="508">Pleuroziaceae</option>
+												<option value="509">Pleuroziopsidaceae</option>
+												<option value="510">Plumbaginaceae</option>
+												<option value="511">Pluteaceae</option>
+												<option value="512">Poaceae</option>
+												<option value="513">Podocarpaceae</option>
+												<option value="514">Podostemaceae</option>
+												<option value="515">Polemoniaceae</option>
+												<option value="516">Polygalaceae</option>
+												<option value="517">Polygonaceae</option>
+												<option value="518">Polypodiaceae</option>
+												<option value="519">Polytrichaceae</option>
+												<option value="520">Pontederiaceae</option>
+												<option value="521">Porellaceae</option>
+												<option value="522">Porpidiaceae</option>
+												<option value="523">Portulacaceae</option>
+												<option value="524">Posidoniaceae</option>
+												<option value="525">Potamogetonaceae</option>
+												<option value="526">Pottiaceae</option>
+												<option value="527">Primulaceae</option>
+												<option value="528">Proteaceae</option>
+												<option value="529">Protothelenellaceae</option>
+												<option value="530">Pseudoditrichaceae</option>
+												<option value="531">Pseudolepicoleaceae</option>
+												<option value="532">Psilotaceae</option>
+												<option value="533">Psoraceae</option>
+												<option value="534">Pteridaceae</option>
+												<option value="535">Pterigynandraceae</option>
+												<option value="536">Pterobryaceae</option>
+												<option value="537">Ptilidiaceae</option>
+												<option value="538">Ptychomitriaceae</option>
+												<option value="539">Punicaceae</option>
+												<option value="540">Pyrenotrichaceae</option>
+												<option value="541">Pyrenulaceae</option>
+												<option value="542">Pyrolaceae</option>
+												<option value="543">Quiinaceae</option>
+												<option value="717">Racodiaceae</option>
+												<option value="544">Racopilaceae</option>
+												<option value="545">Radulaceae</option>
+												<option value="546">Rafflesiaceae</option>
+												<option value="547">Ramalinaceae</option>
+												<option value="548">Ranunculaceae</option>
+												<option value="549">Rapateaceae</option>
+												<option value="698">Readerielliopsidaceae</option>
+												<option value="550">Resedaceae</option>
+												<option value="551">Restionaceae</option>
+												<option value="552">Rhachitheciaceae</option>
+												<option value="553">Rhamnaceae</option>
+												<option value="554">Rhizocarpaceae</option>
+												<option value="555">Rhizogoniaceae</option>
+												<option value="556">Rhizophoraceae</option>
+												<option value="557">Rhodophyllidaceae</option>
+												<option value="558">Rhytidiaceae</option>
+												<option value="559">Ricciaceae</option>
+												<option value="560">Riellaceae</option>
+												<option value="561">Rimulariaceae</option>
+												<option value="562">Roccellaceae</option>
+												<option value="563">Rosaceae</option>
+												<option value="564">Rubiaceae</option>
+												<option value="565">Ruppiaceae</option>
+												<option value="566">Ruscaceae</option>
+												<option value="567">Rutaceae</option>
+												<option value="568">Sabiaceae</option>
+												<option value="569">Saccolomataceae</option>
+												<option value="703">Saccotheciaceae</option>
+												<option value="570">Salicaceae</option>
+												<option value="571">Salvadoraceae</option>
+												<option value="572">Salviniaceae</option>
+												<option value="573">Santalaceae</option>
+												<option value="574">Sapindaceae</option>
+												<option value="575">Sapotaceae</option>
+												<option value="576">Sarcolaenaceae</option>
+												<option value="577">Sarraceniaceae</option>
+												<option value="578">Saururaceae</option>
+												<option value="579">Saxifragaceae</option>
+												<option value="580">Scapaniaceae</option>
+												<option value="581">Schaereriaceae</option>
+												<option value="582">Scheuchzeriaceae</option>
+												<option value="583">Schisandraceae</option>
+												<option value="584">Schistostegaceae</option>
+												<option value="585">Schizaeaceae</option>
+												<option value="711">Schizothyriaceae</option>
+												<option value="586">Scouleriaceae</option>
+												<option value="587">Scrophulariaceae</option>
+												<option value="588">Scytopetalaceae</option>
+												<option value="589">Selaginellaceae</option>
+												<option value="590">Seligeriaceae</option>
+												<option value="591">Sematophyllaceae</option>
+												<option value="592">Simaroubaceae</option>
+												<option value="593">Simarubaceae</option>
+												<option value="594">Simmondsiaceae</option>
+												<option value="595">Sinopteridaceae</option>
+												<option value="596">Smilacaceae</option>
+												<option value="597">Solanaceae</option>
+												<option value="598">Solorinellaceae</option>
+												<option value="599">Sonneratiaceae</option>
+												<option value="600">Sparganiaceae</option>
+												<option value="601">Sphaerocarpaceae</option>
+												<option value="602">Sphaerophoraceae</option>
+												<option value="603">Sphaerosepalaceae</option>
+												<option value="604">Sphagnaceae</option>
+												<option value="605">Sphenocleaceae</option>
+												<option value="606">Sphinctrinaceae</option>
+												<option value="607">Splachnaceae</option>
+												<option value="608">Splachnobryaceae</option>
+												<option value="609">Stackhousiaceae</option>
+												<option value="610">Stangeriaceae</option>
+												<option value="611">Staphyleaceae</option>
+												<option value="612">Stemonaceae</option>
+												<option value="613">Stenochlaenaceae</option>
+												<option value="614">Sterculiaceae</option>
+												<option value="615">Stereocaulaceae</option>
+												<option value="616">Stereophyllaceae</option>
+												<option value="617">Stictidaceae</option>
+												<option value="618">Strelitziaceae</option>
+												<option value="619">Strigulaceae</option>
+												<option value="620">Stromatopteridaceae</option>
+												<option value="621">Strophariaceae</option>
+												<option value="622">Styracaceae</option>
+												<option value="623">Surianaceae</option>
+												<option value="624">Symplocaceae</option>
+												<option value="625">Syzygosporaceae</option>
+												<option value="626">Taccaceae</option>
+												<option value="627">Taenitidaceae</option>
+												<option value="628">Tamaricaceae</option>
+												<option value="629">Targioniaceae</option>
+												<option value="630">Taxaceae</option>
+												<option value="631">Taxodiaceae</option>
+												<option value="632">Tectariaceae</option>
+												<option value="633">Teloschistaceae</option>
+												<option value="712">Teratosphaeriaceae</option>
+												<option value="718">Tetramelaceae</option>
+												<option value="634">Tetraphidaceae</option>
+												<option value="635">Thamnobryaceae</option>
+												<option value="636">Theaceae</option>
+												<option value="637">Thelenellaceae</option>
+												<option value="638">Theliaceae</option>
+												<option value="639">Theligonaceae</option>
+												<option value="640">Thelotremataceae</option>
+												<option value="641">Thelypteridaceae</option>
+												<option value="642">Theophrastaceae</option>
+												<option value="643">Thrombiaceae</option>
+												<option value="644">Thuidiaceae</option>
+												<option value="645">Thurniaceae</option>
+												<option value="646">Thymelaeaceae</option>
+												<option value="647">Thyrsopteridaceae</option>
+												<option value="648">Tiliaceae</option>
+												<option value="649">Timmiaceae</option>
+												<option value="650">Tovariaceae</option>
+												<option value="651">Trapaceae</option>
+												<option value="652">Trapeliaceae</option>
+												<option value="653">Tremandraceae</option>
+												<option value="654">Tremellaceae</option>
+												<option value="655">Treubiaceae</option>
+												<option value="656">Trichocoleaceae</option>
+												<option value="657">Trichocomaceae</option>
+												<option value="658">Tricholomataceae</option>
+												<option value="659">Trichomanaceae</option>
+												<option value="660">Trichotheliaceae</option>
+												<option value="661">Trigoniaceae</option>
+												<option value="662">Triuridaceae</option>
+												<option value="663">Trochodendraceae</option>
+												<option value="664">Tropaeolaceae</option>
+												<option value="665">Trypetheliaceae</option>
+												<option value="666">Turneraceae</option>
+												<option value="667">Typhaceae</option>
+												<option value="668">Ulmaceae</option>
+												<option value="669">Umbilicariaceae</option>
+												<option value="670">Uncertain</option>
+												<option value="671">Urticaceae</option>
+												<option value="672">Valerianaceae</option>
+												<option value="673">Velloziaceae</option>
+												<option value="674">Verbenaceae</option>
+												<option value="675">Verrucariaceae</option>
+												<option value="676">Vezdaeaceae</option>
+												<option value="677">Violaceae</option>
+												<option value="678">Viscaceae</option>
+												<option value="679">Vitaceae</option>
+												<option value="680">Vittariaceae</option>
+												<option value="681">Vochysiaceae</option>
+												<option value="682">Winteraceae</option>
+												<option value="683">Woodsiaceae</option>
+												<option value="684">Xanthorrhoeaceae</option>
+												<option value="685">Xyridaceae</option>
+												<option value="704">Zalariaceae</option>
+												<option value="686">Zamiaceae</option>
+												<option value="687">Zannichelliaceae</option>
+												<option value="688">Zingiberaceae</option>
+												<option value="689">Zosteraceae</option>
+												<option value="690">Zygophyllaceae</option>
+										</select>
+			</div>	
+			<div class="col-md-3" style="font-size:14px;">
+					<select id = "filter_h" name="filter_h" class="pl-select">
+							<option value="h00">Semua habitus</option>
+														<option value="h01">Lumut</option>
+														<option value="h02">Rumput</option>
+														<option value="h03">Semak</option>
+														<option value="h04">Perdu</option>
+														<option value="h05">Pohon</option>
+														<option value="h06">Merambat</option>
+														<option value="h07">Menjalar</option>
+														<option value="h08">Sukulen</option>
+														<option value="h09">Akuatik</option>
+														<option value="h10">Epifit & Parasit </option>
+														<option value="h11">Paku</option>
+														<option value="h12">Jamur</option>
+														<option value="h20">Raksasa</option>
+												</select>						
+			</div>	
+			<div class="col-md-3" style="font-size:14px;">
+					<select id = "filter_u" name="filter_u" class="pl-select">
+							<option value="u00">Semua kategori</option>
+														<option value="u01">Liar</option>
+														<option value="u02">Gulma</option>
+														<option value="u03">Invasif</option>
+														<option value="u10">Makanan pokok</option>
+														<option value="u11">Pangan > Sereal</option>
+														<option value="u12">Pangan > Biji-bijian</option>
+														<option value="u13">Pangan > Kacang-kacangan</option>
+														<option value="u14">Pangan > Buah-buahan</option>
+														<option value="u21">Pangan > Sayur-sayuran</option>
+														<option value="u22">Pangan > Umbi-umbian</option>
+														<option value="u23">Pangan > Bumbu & Rempah</option>
+														<option value="u30">Pengobatan</option>
+														<option value="u31">Pengobatan > tradisional</option>
+														<option value="u32">Kengobatan > medis</option>
+														<option value="u40">Aroma</option>
+														<option value="u50">Ornamen</option>
+														<option value="u51">Ornamen > teras</option>
+														<option value="u52">Ornamen > halaman</option>
+														<option value="u53">Ornamen > taman/lanskap</option>
+														<option value="u54">Ornamen > ground cover</option>
+														<option value="u55">Ornamen > peneduh jalan</option>
+														<option value="u60">Industri</option>
+														<option value="u61">Industri > kayu</option>
+														<option value="u62">Industri > getah</option>
+														<option value="u63">Industri > minyak</option>
+														<option value="u64">Industri > serat</option>
+														<option value="u65">Industri > barang konsumsi</option>
+														<option value="u70">Pendukung lahan</option>
+														<option value="u71">Pendukung > cover crops</option>
+														<option value="u72">Pendukung > pencegah erosi</option>
+														<option value="u73">Pendukung > tanaman reklamasi</option>
+												</select>						
+			</div>	
+			<div class="col-md-1" style="font-size:14px;">
+				<input type="hidden" id="filter" name="filter" value="0g0000h00u00">
+				<button type="submit" style="height:34px;width:34px;border-radius:5px 15px;"><i class="fa fa-search" style="color:green"></i></button>	
+			</div>	
+			</form>		
+			<div class="col-md-1" style="font-size:14px;">
+			</div>	
+		</div>				
+			
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+
+		<div class="col-md-3" style="display:block;margin-bottom:4px">	
+			<div class="panel panel-default" style="font-size:16px;">
+				<div class="panel-heading" >
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#direktori" href="#selIdx">Index</a></h4>
+				</div>
+				<div id="selIdx" class="panel-collapse collapse">
+					<div class="panel-body">
+						<a href="http://plantamor.com/species/direktori">Nama Tumbuhan A - Z</a>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+		</div>	
+	</div>
+</div>
+
+
+
+
+<div class="row" style="margin:6px;margin-top:20px;padding:6px;">		
+
+	<div class="container" style="width:100%;min-height:300px;padding:6px">
+		<div class="panel-group" id="gallery" > 
+ 
+			<div class="panel-heading">
+					<span style="font-weight:600;font-size:20px;color:#1fa67a">
+						<i class="fa fa-image"></i>&nbsp;GALERI FOTO TUMBUHAN
+					</span>
+			</div>
+			<style>
+			.galbox {display:block;height:120px;text-align:center;margin-top:10px;border-radius:10px;padding-top:8px;background-repeat: no-repeat;background-size:100% 100%;}
+			</style>
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h01u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/moss.jpg)">
+					</div>
+					</a>
+					<div class="desc">Lumut</div>
+					</div>
+ 
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h02u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/grass.jpg)">
+					</div>
+					</a>
+					<div class="desc">Rumput</div>
+					</div>
+ 
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h03u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/bush.jpg)">
+					</div>
+					</a>
+					<div class="desc">Semak</div>
+					</div>
+
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h04u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/shurbs.jpg)">
+					</div>
+					</a>
+					<div class="desc">Perdu</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h05u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/tree.jpg)">
+					</div>
+					</a>
+					<div class="desc">Pohon</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h06u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/climbers.jpg)">
+					</div>
+					</a>
+					<div class="desc">Merambat</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h07u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/creepers.jpg)">
+					</div>
+					</a>
+					<div class="desc">Menjalar</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h08u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/succulents.jpg)">
+					</div>
+					</a>
+					<div class="desc">Sukulen</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h09u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/aquatic.jpg)">
+					</div>
+					</a>
+					<div class="desc">Akuatik</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h10u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/epiphytes.jpg)">
+					</div>
+					</a>
+					<div class="desc">Epifit & Parasit</div>
+					</div>
+
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h11u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/ferns.jpg)">
+					</div>
+					</a>
+					<div class="desc">Paku</div>
+					</div>
+
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h12u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/mushrooms.jpg)">
+					</div>
+					</a>
+					<div class="desc">Jamur</div>
+					</div>
+
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h20u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/gianttree.jpg)">
+					</div>
+					</a>
+					<div class="desc">Raksasa</div>
+					</div>
+					
+					<div class="gallery" >
+					<a href="http://plantamor.com/species/gallery/0/0-h00u00">
+					<div class="desc" style="height:125px;background-image: url(http://plantamor.com//assets/files/bground/rainforest.jpg)">
+					</div>
+					</a>
+					<div class="desc">Semua Jenis</div>
+				
+				</div>
+			</div>	
+		</div>				
+			
+	</div>
+
+<div class="row" style="margin:6px;margin-top:20px;padding:6px;">		
+<div>
+	<div class="container" style="width:100%;min-height:300px;padding:6px">
+		<div class="panel-group" id="directory" > 
+
+			<div class="panel-heading">
+					<span style="font-weight:600;font-size:20px;color:#1fa67a">
+						<i class="fa fa-tree"></i>&nbsp;SPECIES VIEW
+					</span>
+			</div>
+
+<a href="http://plantamor.com/virtual/visit/176/ketapang-kencana-br-terminalia-neotaliala-kiara-condong-bandung-jawa-barat">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/default.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="clear">Ketapang Kencana <br><i>(Terminalia&nbsp;neotaliala)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/175/kebun-teh-br-camellia-sinensis-sukawana-lembang-jawa-barat">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/175.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Kebun Teh <br><i>(Camellia&nbsp;sinensis)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/174/sukun-br-artocarpus-altilis-jl-setiabudi-bandung-jawa-barat">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/174.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Sukun <br><i>(Artocarpus&nbsp;altilis)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/173/aren-br-arenga-pinnata-tahura-bukit-suharto-samarinda-kalimatan-timur">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/173.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Aren <br><i>(Arenga&nbsp;pinnata)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/172/paku-payung-br-dipteris-conjugata-lembah-harau-limapuluh-koto-sumatera-barat">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/172.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Paku Payung <br><i>(Dipteris&nbsp;conjugata)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/171/fishbone-cactus-br-disocactus-anguliger-hana-highway-maui-island-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/171.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Fishbone Cactus <br><i>(Disocactus&nbsp;anguliger)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/170/banyan-br-ficus-benghalensis-ala-moana-regional-park-honolulu-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/170.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Banyan <br><i>(Ficus&nbsp;benghalensis)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/169/java-cassia-br-cassia-javanica-waipio-maui-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/169.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Java Cassia <br><i>(Cassia&nbsp;javanica)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/168/kiawe-br-prosopis-pallida-makena-rd-kohei-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/168.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Kiawe <br><i>(Prosopis&nbsp;pallida)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/167/kerai-payung-br-filicium-decipiens-upi-bandung-jawa-barat">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/167.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Kerai Payung <br><i>(Filicium&nbsp;decipiens)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/166/singkong-br-manihot-esculenta-pakis-malang-jawa-timur">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/166.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Singkong <br><i>(Manihot&nbsp;esculenta)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/165/sosnowsky-s-hogweed-br-heracleum-sosnowskyi-verkhnyaya-troitsa-tver-oblast">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/165.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Sosnowsky's hogweed <br><i>(Heracleum&nbsp;sosnowskyi)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/164/australian-banyan-br-ficus-macrophylla-piazza-marina-palermo">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/164.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Australian Banyan <br><i>(Ficus&nbsp;macrophylla)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/163/bismarckia-palm-br-bismarckia-nobilis-jl-mh-thamrin-jakarta">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/163.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Bismarckia Palm <br><i>(Bismarckia&nbsp;nobilis)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/162/lada-br-piper-nigrum-towuti-luwuk-timur-sulawesi-selatan">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/162.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Lada <br><i>(Piper&nbsp;nigrum)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/161/singapore-plumeria-br-plumeria-obtusa-uh-honolulu-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/161.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Singapore Plumeria <br><i>(Plumeria&nbsp;obtusa)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/160/java-cassia-br-cassia-javanica-uh-honolulu-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/160.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Java Cassia <br><i>(Cassia&nbsp;javanica)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/159/christmas-berry-br-schinus-terebinthifolius-baldwin-ave-makawao-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/159.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Christmas Berry <br><i>(Schinus&nbsp;terebinthifolius)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/158/hawaiian-holly-br-ilex-anomala-hana-highway-maui-island-hawaii">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/158.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Hawaiian Holly <br><i>(Ilex&nbsp;anomala)</i></div>
+</div>
+</a>
+
+
+<a href="http://plantamor.com/virtual/visit/157/crotons-br-codiaeum-variegatum-raiatea-island">
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/157.jpg">
+  <div class="clear">
+   
+  </div>
+  <div class="transmed"><i class="fa fa-map-marker"></i></div>
+  <div class="transloc">Crotons <br><i>(Codiaeum&nbsp;variegatum)</i></div>
+</div>
+</a>
+
+<div class="virtual" style="background-image: url(http://plantamor.com//assets/files/virtual/redirect.jpg">
+  <a href="http://plantamor.com/virtual/visit/index">
+  <div class="desc" style="height:105px">
+   
+  </div>
+  </a>
+  <div class="desc"></div>
+</div>	
+
+
+		</div>
+	</div>		
+</div>
+</div>
+</div>
+
+	<div><!-- workspace ends -->  
+</div>	<!-- wrapper ends -->	
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</section><!-- /.Left col -->
+            <section class="col-md-4 connectedSortable">
+                <!-- show user's current projects -->
+                <div class="box box-info">
+                  	<div class="box-header">
+<div class="panel panel-default">
+	<div class="container" style="width:100%;min-height:858px">
+		<div class="panel-group" id="plantaria" > 
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				</h4>
+			</div>
+ 
+	
+			<div class="panel panel-default" style="font-size:16px;">
+				<div class="panel-heading" >
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#plantaria" href="#bab1">Peraturan & Perundangan</a></h4>
+				</div>
+				<div id="bab1" class="panel-collapse collapse ">
+					<div class="panel-body">
+						<ul>					
+						<li><a href="http://plantamor.com/library/uu_no_5_1990"><span style="font-weight:550;color:#1fa67a" >UU NO 5 TH 1990</span></a><br>
+						Tentang Konservasi Sumber Daya Hayati dan Ekosistemnya</li>	
+
+						<li><a href="http://plantamor.com/library/uu_no_16_1992"><span style="font-weight:550;color:#1fa67a" >UU NO 16 TH 1992</span></a><br>
+						Tentang Karantina Hewan, Ikan dan Tumbuhan</li>
+
+						<li><a href="http://plantamor.com/library/uu_no_16_1992_p"><span style="font-weight:550;color:#1fa67a" >UU NO 16 TH 1992 /Penjelasan</span></a><br>
+						Tentang Karantina Hewan, Ikan dan Tumbuhan (Penjelasan)</li>
+
+						<li><a href="http://plantamor.com/library/uu_no_41_1999"><span style="font-weight:550;color:#1fa67a" >UU NO 41 TH 1999</span></a><br>
+						Tentang Kehutanan</li>
+
+						<li><a href="http://plantamor.com/library/uu_no_29_2000"><span style="font-weight:550;color:#1fa67a" >UU NO 29 TH 2000</span></a><br>
+						Tentang Perlindungan Varietas Tanaman</li>
+
+						<li><a href="http://plantamor.com/library/pp_no_68_1998"><span style="font-weight:550;color:#1fa67a" >PP NO 68 TH 1998</span></a><br>
+						Tentang Kawasan Suaka Alam dan Kawasan Pelestarian Alam</li>
+
+						<li><a href="http://plantamor.com/library/pp_no_7_1999"><span style="font-weight:550;color:#1fa67a" >P NO 7 TH 1999</span></a><br>
+						Tentang Pengawetan Jenis Tumbuhan dan Satwa</li>
+
+						<li><a href="http://plantamor.com/library/pp_no_8_1999"><span style="font-weight:550;color:#1fa67a" >PP NO 8 TH 1999</span></a><br>
+						Tentang Pemanfaatan Jenis Tumbuhan dan Satwa Liar</li>
+						</ul>					
+					
+					
+					</div>
+				</div>
+			</div>
+	
+	
+	<div class="panel panel-default" style="font-size:16px">
+      <style>.csv_list{display:inline-block;width:300px;padding:4px}</style>
+	  <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#plantaria" href="#bab2">Peta Kawasan Konservasi</a></h4>
+      </div>
+      <div id="bab2" class="panel-collapse collapse in">
+              <div class="panel-body" style="padding:6px;">
+										
+				<div class="row" style="width:90%; margin:auto;">	
+					<div class="col-md-6">
+					<div class="csv_list">
+					<a href="http://plantamor.com/konservasi/tn/index">
+					<span style="font-weight:400;"><i class="fa fa-map-marker fa-lg"> </i>
+					Taman Nasional
+					</span>
+					</a>
+					</div>
+					
+					<div class="csv_list">
+					<a href="http://plantamor.com/konservasi/hr/index">
+					<span style="font-weight:400;"><i class="fa fa-map-marker  fa-lg"></i>
+					Taman Hutan Raya
+					</span>
+					</a>
+					</div>
+					
+					
+					<div class="csv_list">
+					<a href="http://plantamor.com/konservasi/kr/index">
+					<span style="font-weight:400;#1fa67a"><i class="fa fa-map-marker fa-lg"></i>
+					Kebun Raya
+					</span>
+					</a>
+					</div>
+					</div>
+					
+					<div class="col-md-6">
+					<div class="csv_list">
+					<a href="http://plantamor.com/konservasi/ca/index">
+					<span style="font-weight:400;"><i class="fa fa-map-marker fa-lg"></i> 
+					Cagar Alam</span>
+					</a>
+					</div>
+					
+					<div class="csv_list">
+					<a href="http://plantamor.com/konservasi/tw/index">
+					<span style="font-weight:400;"><i class="fa fa-map-marker fa-lg">  </i>
+					Taman Wisata Alam
+					</span>
+					</a>
+					</div>
+					</div>
+					</div>
+			</div>
+		</div>
+     </div>
+	
+	<div class="panel panel-default" style="font-size:16px">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#plantaria" href="#bab3">Artikel Tumbuhan</a></h4>
+      </div>
+      <div id="bab3" class="panel-collapse collapse ">
+             <div class="panel-body" style="font-size:15px">
+			<ul>			  
+												<li><a href="http://plantamor.com/library/article/71/history_of_chocolate"><span style="font-weight:550;color:#1fa67a">History of Chocolate</span></a></li>
+								<li><a href="http://plantamor.com/library/article/29/pohon_tertua_di_dunia_ditemukan"><span style="font-weight:550;color:#1fa67a">Pohon Tertua di Dunia Ditemukan</span></a></li>
+								<li><a href="http://plantamor.com/library/article/30/angsana_bikin_jamur_lewat"><span style="font-weight:550;color:#1fa67a">Angsana Bikin Jamur Lewat</span></a></li>
+								<li><a href="http://plantamor.com/library/article/31/getah_beracun_antijamur"><span style="font-weight:550;color:#1fa67a">Getah Beracun Antijamur</span></a></li>
+								<li><a href="http://plantamor.com/library/article/32/tertinggal_dari_negara_lain"><span style="font-weight:550;color:#1fa67a">Tertinggal dari Negara Lain</span></a></li>
+							</ul>
+			 <div style="font-size:18px;margin-left:6%"><a href="http://plantamor.com/library/article/index">[index]</a></div>
+				</div>		  
+			</div>
+      </div>
+	
+  
+	
+	<div class="panel panel-default" style="font-size:16px">
+      <div class="panel-heading">
+         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#plantaria" href="#bab4">Tumbuhan & Catatan Sejarah</a></h4>
+      </div>
+      <div id="bab4" class="panel-collapse collapse ">
+            <div class="panel-body">
+			<ul>			  
+				<li><a href="http://plantamor.com/library/bc_history/index"><span style="font-weight:550;color:#1fa67a">Sebelum Masehi</span></a></li>
+				<li><a href="http://plantamor.com/library/ad_history/index"><span style="font-weight:550;color:#1fa67a">Setelah Masehi</span></a></li>
+			</ul>								
+				</div>		  
+			</div>
+      </div>
+
+	<div class="panel panel-default" style="font-size:16px">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#plantaria" href="#bab5">Glosari Tumbuhan</a></h4>
+      </div>
+      <div id="bab5" class="panel-collapse collapse ">
+        <div class="panel-body">
+			<ul>			  
+				<li><a href="http://plantamor.com/library/latin"><span style="font-weight:550;color:#1fa67a">Arti Nama-nama Ilmiah Tumbuhan </span></a></li>
+
+			</ul>								
+		</div>
+      </div>
+    </div>
+	
+
+	
+	<div class="panel panel-default" style="font-size:16px">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#plantaria" href="#bab7">Tentang Kami</a></h4>
+      </div>
+      <div id="bab7" class="panel-collapse collapse ">
+        <div class="panel-body">
+
+
+<p style="text-align: justify;">Plantamor adalah situs pribadi yang didedikasikan sebagai tempat berbagi informasi yang berkaitan dengan pengenalan berbagai jenis tumbuhan mulai dari nama-namanya, tampilannya, keindahannya, tempat tumbuhnya, hingga hubungan kekerabatan mereka antara satu dengan lainnya. Selain itu, Plantamor juga menyediakan berbagai informasi tambahan yang relevan dengan dunia tumbuhan termasuk di antaranya peraturan perundangan, peta online kawasan konservasi, artikel dan peristiwa sejarah terkait tumbuhan,  dan sarana virtual untuk melihat tampilan fisik berbagai jenis tumbuhan di lokasi nyata di berbagai sudut dunia.</p>
+
+<p style="text-align: justify;">Nama-nama ilmiah dan taksa yang tersimpan di dalam database Plantamor adalah kumpulan dari berbagai sumber, terutama USDA (US Department of Agriculture). Buku utama yang paling sering kami jadikan acuan adalah Tropica; Color Cyclopedia of Exotic Plants and Trees hasil karya Alferd Byrd Graf. Nama-nama ilmiah dan nama-nama umum dalam bahasa Inggris hampir bisa dipastikan berasal dari kedua sumber utama tersebut. Adapun nama-nama umum dalam berbagai bahasa di Asia Tenggara banyak kami ambil dari buku-buku terbitan PROSEA (Plant Resources of South-East Asia). Tentu saja, kami juga tetap selalu mencari dan menggunakan sumber-sumber pengetahuan lain, termasuk pengetahuan dan pengalaman pribadi, jika dirasa masih diperlukan untuk verifikasi dan tambahan informasi.</p>
+
+<p style="text-align: justify;">Terima kasih anda telah mengunjungi kami. Jika ada saran dan koreksi, silakan anda sampaikan melalui plantamor dot com dengan nama akun muslihudin. Kami akan menerimanya dengan senang hati.</p>
+
+<br>
+<br>
+
+
+  
+Terima kasih,
+<br>Cak Mus   
+
+
+		</div>
+      </div>
+    </div>	
+	
+	
+	
+	
+<div style="height:40px;dispaly:block;clear:both"></div>
+	
+	
+    	</div>
+    </div>
+  </div> 
+  
+<script>
+var elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+</script>  
+  
+		</div>  
+	</div>
+</section><!-- right col -->
+      		</div><!-- /.main row -->
+		</section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+	
+	
+
+<script>
+var $cell = $('.image__cell');
+$cell.find('.image--basic').click(function() {
+  var $thisCell = $(this).closest('.image__cell');
+
+  if ($thisCell.hasClass('is-collapsed')) {
+    $cell.not($thisCell).removeClass('is-expanded').addClass('is-collapsed');
+    $thisCell.removeClass('is-collapsed').addClass('is-expanded');
+  } else {
+    $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+  }
+});
+
+$cell.find('.expand__close').click(function() {
+  var $thisCell = $(this).closest('.image__cell');
+  $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+  });
+</script>
+
+<script>
+
+$('img').on('click', function(e){
+  var t = this.id.substring(1);
+  e.preventDefault();
+  //url = $(this).attr("href");
+  var target= $(".section")[t] ;
+  var offset = $( target ).offset();
+  $('html, body').top().animate({
+    scrollTop: offset.top
+  }, 1000);
+});
+</script>
+
+<script>
+$(function() {
+    $('#filter_cnt').change(function() {
+        this.form.submit();
+    });
+});
+
+</script>
+<script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
+
+<script>
+$(document).ready(function(){
+$( '#filter_f' ).on('change',function () {
+	var fam = document.getElementById("filter_f").value;
+	var hab = document.getElementById("filter_h").value;
+	var use = document.getElementById("filter_u").value;
+	var flt = fam + 'g0000' + hab + use;
+	document.getElementById("filter").value = flt;   
+	});
+});
+
+$(document).ready(function(){
+$( '#filter_h' ).on('change',function () {
+	var fam = document.getElementById("filter_f").value;
+	var hab = document.getElementById("filter_h").value;
+	var use = document.getElementById("filter_u").value;
+	var flt = fam + 'g0000' + hab + use;
+	document.getElementById("filter").value = flt;   
+	});
+});
+
+$(document).ready(function(){
+$( '#filter_u' ).on('change',function () {
+	var fam = document.getElementById("filter_f").value;
+	var hab = document.getElementById("filter_h").value;
+	var use = document.getElementById("filter_u").value;
+	var flt = fam + 'g0000' + hab + use;
+	document.getElementById("filter").value = flt;   
+	});
+});
+
+
+
+</script><footer class="main-footer" style="height:50px;">
+<div class="pull-right hidden-xs">
+<b>Version</b> 1.0
+</div>
+<strong>Copyright <i class="fa fa-copyright"></i> 2021 by <a href="http://www.plantamor.com">PLANTAMOR</a></strong>
+</footer>
+<script type="text/javascript">
+    function confirmdelete(){
+        var agree = confirm("You are going to delete this data. Sure?");
+        if(agree){
+        return true;
+        }else{
+        return false;
+        }
+    }
+
+  </script>
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.3 -->
+    <script src="http://plantamor.com/assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- jQuery UI 1.11.2 -->
+    <script src="http://plantamor.com/assets/dist/js/jquery-ui.min.js" type="text/javascript"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="http://plantamor.com/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>  
+    <!-- Bootstrap Toggle 2.2.o JS -->
+    <script src="http://plantamor.com/assets/bootstrap/js/bootstrap-toggle.min.js" type="text/javascript"></script> 
+    <!-- Sparkline -->
+    <script src="http://plantamor.com/assets/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="http://plantamor.com/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+	<!-- Slimscroll -->
+    <script src='http://plantamor.com/assets/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="http://plantamor.com/assets/dist/js/app.min.js" type="text/javascript"></script>
+  
+ 
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3078785-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+  </body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'sg3plcpnl0136'},{'id':'4977056'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
+
